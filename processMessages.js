@@ -128,19 +128,18 @@ function sendTextMessageWithReplies(recipientId, messageText) {
     message: {
         text: messageText,
         quick_replies:[
-            {
-            content_type:"text",
-            title:chatbotEvents[0],
-            payload:chatbotEvents[0]
-        },
-        {
-            content_type:"text",
-            title:chatbotEvents[1],
-            payload:chatbotEvents[1]
-        }
         ]
     }
-  };
+	};
+	var len = chatbotEvents.length;
+	for (var i = 0; i < len; ++i) {
+        var item = {
+			content_type:"text",
+            title:chatbotEvents[i],
+            payload:chatbotEvents[i]
+		};          
+		messageData.message.quick_replies.push(item);
+	}
   callSendAPI(messageData);
 }
 function receivedPostback(event) {
