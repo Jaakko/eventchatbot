@@ -157,10 +157,10 @@ function receivedPostback(event) {
     var res = payload.split(":");
     switch (res[0]) {
       case chatbotEvents[0]:
-        chatbotEventHandlers[0](senderID, res[1]);
+        chatbotEventHandlers[0](senderID, parseInt(res[1]));
         break;
       case chatbotEvents[1]:
-        chatbotEventHandlers[1](senderID, res[1]);
+        chatbotEventHandlers[1](senderID, parseInt(res[1]));
         break;        
       default:
         sendTextMessageWithReplies(senderID, "Unfortunately I don't know. Try gigs or plays?")
