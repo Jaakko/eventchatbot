@@ -193,13 +193,18 @@ function handleRequest(recipientId, index, eventIndex, url){
                         type: "template",
                         payload: {
                         template_type: "list",
-                        top_element_style: "compact",
                         elements: [
                         ]
                     }
                 }
                 }
             };
+	    var len = eventsResponse.data.length;
+            if (len <= 1) {
+                messageData.message.attachment.payload.template_type = "generic"
+            } else {
+                messageData.message.attachment.payload["top_element_style"] = "compact"
+            }
 
             var len = eventsResponse.data.length;
             if (index + 4 < len) len = index + 4;
